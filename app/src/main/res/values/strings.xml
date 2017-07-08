@@ -2,4 +2,6 @@
     <string name="app_name">Deservation</string>
     <string name="pick_a_customer">Pick a customer</string>
     <string name="loading">loading...</string>
+    <string name="load_error">It wasn\'t possible to load data</string>
+    <string name="check_internet">Please check your internet connection</string>
 </resources>
