@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Deservation</string>
     <string name="pick_a_customer">Pick a customer</string>
+    <string name="loading">loading...</string>
 </resources>
