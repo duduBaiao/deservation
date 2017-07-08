@@ -5,4 +5,8 @@
     <string name="load_error">It wasn\'t possible to load data</string>
     <string name="check_internet">Please check your internet connection</string>
     <string name="search">Search</string>
+    <string name="reservations">Reservations</string>
+    <string name="table">Table</string>
+    <string name="available">Available</string>
+    <string name="reserved">Reserved</string>
 </resources>

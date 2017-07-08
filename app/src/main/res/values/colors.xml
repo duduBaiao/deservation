@@ -5,4 +5,9 @@
     <color name="colorAccent">#5faef2</color>
     <color name="icon_background">#ddd</color>
     <color name="white_opaque">#FFFFFFFF</color>
+
+    <color name="reserved_table_background">#eee</color>
+    <color name="reserved_table_status">#fd7272</color>
+    <color name="available_table_background">#b0ffaa</color>
+    <color name="available_table_status">#17990e</color>
 </resources>

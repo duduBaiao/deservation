@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_opaque"
+    tools:context="com.nostalgictouch.deservation.view.reservations.ReservationsActivity">
+
+    <fragment
+        android:id="@+id/reservationsFragment"
+        android:name="com.nostalgictouch.deservation.view.reservations.ReservationsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</FrameLayout>
