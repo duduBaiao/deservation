@@ -4,7 +4,6 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.os.Handler
 import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +12,7 @@ import com.nostalgictouch.deservation.R
 import com.nostalgictouch.deservation.data.livedata.common.Status
 import com.nostalgictouch.deservation.model.Customer
 import com.nostalgictouch.deservation.model.Table
+import com.nostalgictouch.deservation.utils.test.EspressoIdlingResource
 import com.nostalgictouch.deservation.view.common.BaseFragment
 import com.nostalgictouch.deservation.viewmodel.ReservationsViewModel
 import kotlinx.android.synthetic.main.fragment_reservations.*
@@ -40,9 +40,7 @@ class ReservationsFragment : BaseFragment() {
         tablesRecyclerView.layoutManager = GridLayoutManager(activity, columnCount)
 
         if (savedInstanceState == null) {
-            Handler().postDelayed({
-                loadReservations()
-            }, 1)
+            loadReservations()
         }
     }
 
@@ -73,6 +71,8 @@ class ReservationsFragment : BaseFragment() {
     }
 
     private fun loadReservations() {
+        EspressoIdlingResource.increment()
+
         viewModel.loadReservations()
     }
 }

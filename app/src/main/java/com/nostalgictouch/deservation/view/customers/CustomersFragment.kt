@@ -5,7 +5,6 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.view.MenuItemCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
@@ -13,6 +12,7 @@ import android.view.*
 import com.nostalgictouch.deservation.R
 import com.nostalgictouch.deservation.data.livedata.common.Status
 import com.nostalgictouch.deservation.model.Customer
+import com.nostalgictouch.deservation.utils.test.EspressoIdlingResource
 import com.nostalgictouch.deservation.view.common.BaseFragment
 import com.nostalgictouch.deservation.view.reservations.ReservationsActivity
 import com.nostalgictouch.deservation.viewmodel.CustomersViewModel
@@ -38,9 +38,7 @@ class CustomersFragment : BaseFragment() {
         customersRecyclerView.layoutManager = LinearLayoutManager(activity)
 
         if (savedInstanceState == null) {
-            Handler().postDelayed({
-                loadCustomers()
-            }, 1)
+            loadCustomers()
         }
     }
 
@@ -63,6 +61,8 @@ class CustomersFragment : BaseFragment() {
     }
 
     private fun loadCustomers() {
+        EspressoIdlingResource.increment()
+
         viewModel.loadCustomers()
     }
 
