@@ -18,10 +18,23 @@ class CustomersViewModel : ViewModel() {
 
     fun loadCustomers() {
         val customer0 = Customer(0, "Marilyn", "Monroe")
+        val customer1 = Customer(1, "Abraham", "Lincoln")
+        val customer2 = Customer(2, "Mother", "Teresa")
+        val customer3 = Customer(3, "John F.", "Kennedy")
+        val customer4 = Customer(4, "Martin Luther", "King")
+        val customer5 = Customer(5, "Nelson", "Mandela")
         val customer15 = Customer(15, "Elvis", "Presley")
         val customer17 = Customer(17, "Paul", "McCartney")
 
-        mCustomersLiveData.value = listOf(customer0, customer15, customer17)
+        mCustomersLiveData.value = listOf(
+                customer0,
+                customer1,
+                customer2,
+                customer3,
+                customer4,
+                customer5,
+                customer15,
+                customer17)
 
         mCustomersLiveData.loadingStatus.value = Status.LOADED
     }
