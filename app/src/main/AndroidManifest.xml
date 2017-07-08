@@ -2,6 +2,8 @@
 <manifest package="com.nostalgictouch.deservation"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".DeservationApp"
         android:allowBackup="true"
