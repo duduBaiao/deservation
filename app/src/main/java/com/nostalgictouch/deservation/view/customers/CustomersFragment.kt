@@ -3,17 +3,19 @@ package com.nostalgictouch.deservation.view.customers
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.view.MenuItemCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.*
 import com.nostalgictouch.deservation.R
+import com.nostalgictouch.deservation.data.livedata.common.Status
 import com.nostalgictouch.deservation.model.Customer
 import com.nostalgictouch.deservation.view.common.BaseFragment
+import com.nostalgictouch.deservation.view.reservations.ReservationsActivity
 import com.nostalgictouch.deservation.viewmodel.CustomersViewModel
-import com.nostalgictouch.whatshot.ui.adapters.CustomersAdapter
-import com.nostalgictouch.whatshot.viewmodel.trends.Status
 import kotlinx.android.synthetic.main.fragment_customers.*
 
 class CustomersFragment : BaseFragment() {
@@ -36,7 +38,9 @@ class CustomersFragment : BaseFragment() {
         customersRecyclerView.layoutManager = LinearLayoutManager(activity)
 
         if (savedInstanceState == null) {
-            loadCustomers()
+            Handler().postDelayed({
+                loadCustomers()
+            }, 1)
         }
     }
 
@@ -58,13 +62,14 @@ class CustomersFragment : BaseFragment() {
         })
     }
 
-    fun updateAdapter(customers: List<Customer>) {
-        customersRecyclerView.adapter = CustomersAdapter(customers) {
-        }
-    }
-
     private fun loadCustomers() {
         viewModel.loadCustomers()
+    }
+
+    fun updateAdapter(customers: List<Customer>) {
+        customersRecyclerView.adapter = CustomersAdapter(customers) {
+            showReservations(it)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -91,5 +96,13 @@ class CustomersFragment : BaseFragment() {
                 return true
             }
         })
+    }
+
+    private fun showReservations(customer: Customer) {
+        val intent = Intent(activity, ReservationsActivity::class.java)
+
+        intent.putExtra("customer", customer)
+
+        startActivity(intent)
     }
 }
