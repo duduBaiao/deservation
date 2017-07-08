@@ -1,4 +1,4 @@
-package com.nostalgictouch.deservation.views.customers
+package com.nostalgictouch.deservation.view.customers
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
