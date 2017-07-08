@@ -1,7 +1,6 @@
 package com.nostalgictouch.deservation.data.livedata.common
 
 import android.arch.lifecycle.MutableLiveData
-import com.nostalgictouch.whatshot.viewmodel.trends.Status
 
 open class BaseLiveData<T> : MutableLiveData<T>() {
 

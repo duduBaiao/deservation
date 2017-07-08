@@ -1,4 +1,4 @@
-package com.nostalgictouch.whatshot.utils.extensions
+package com.nostalgictouch.deservation.utils.extensions
 
 import android.content.Context
 import android.net.ConnectivityManager

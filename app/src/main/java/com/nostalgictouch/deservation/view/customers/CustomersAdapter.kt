@@ -1,4 +1,4 @@
-package com.nostalgictouch.whatshot.ui.adapters
+package com.nostalgictouch.deservation.view.customers
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

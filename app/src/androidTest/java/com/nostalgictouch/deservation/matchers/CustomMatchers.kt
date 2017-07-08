@@ -1,4 +1,4 @@
-package com.nostalgictouch.whatshot.matchers
+package com.nostalgictouch.deservation.matchers
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView

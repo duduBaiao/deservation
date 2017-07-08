@@ -3,8 +3,8 @@ package com.nostalgictouch.deservation.viewmodel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
 import com.nostalgictouch.deservation.data.livedata.CustomersLiveData
+import com.nostalgictouch.deservation.data.livedata.common.Status
 import com.nostalgictouch.deservation.model.Customer
-import com.nostalgictouch.whatshot.viewmodel.trends.Status
 
 class CustomersViewModel : ViewModel() {
 

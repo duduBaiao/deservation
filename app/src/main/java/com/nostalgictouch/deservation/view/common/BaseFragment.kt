@@ -3,9 +3,9 @@ package com.nostalgictouch.deservation.view.common
 import android.support.v4.app.Fragment
 import android.view.View
 import com.nostalgictouch.deservation.R
-import com.nostalgictouch.whatshot.utils.extensions.isNetworkAvailable
-import com.nostalgictouch.whatshot.utils.test.EspressoIdlingResource
-import com.nostalgictouch.whatshot.viewmodel.trends.Status
+import com.nostalgictouch.deservation.data.livedata.common.Status
+import com.nostalgictouch.deservation.utils.extensions.isNetworkAvailable
+import com.nostalgictouch.deservation.utils.test.EspressoIdlingResource
 import kotlinx.android.synthetic.main.fragment_base.*
 
 open class BaseFragment: Fragment() {

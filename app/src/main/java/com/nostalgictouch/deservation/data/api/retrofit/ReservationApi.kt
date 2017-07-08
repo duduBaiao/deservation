@@ -1,4 +1,4 @@
-package com.nostalgictouch.whatshot.data.api.retrofit
+package com.nostalgictouch.deservation.data.api.retrofit
 
 import com.nostalgictouch.deservation.data.api.retrofit.response.Customer
 import retrofit2.Call

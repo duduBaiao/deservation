@@ -5,8 +5,8 @@ import android.support.test.espresso.IdlingResource
 import android.support.test.espresso.intent.rule.IntentsTestRule
 import android.support.test.filters.LargeTest
 import android.support.test.runner.AndroidJUnit4
+import com.nostalgictouch.deservation.matchers.CustomMatchers
 import com.nostalgictouch.deservation.view.customers.CustomersActivity
-import com.nostalgictouch.whatshot.matchers.CustomMatchers
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule

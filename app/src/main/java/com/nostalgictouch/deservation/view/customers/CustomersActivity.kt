@@ -2,7 +2,7 @@ package com.nostalgictouch.deservation.view.customers
 
 import android.os.Bundle
 import com.nostalgictouch.deservation.R
-import com.nostalgictouch.whatshot.ui.views.common.BaseActivity
+import com.nostalgictouch.deservation.view.common.BaseActivity
 
 class CustomersActivity : BaseActivity() {
 

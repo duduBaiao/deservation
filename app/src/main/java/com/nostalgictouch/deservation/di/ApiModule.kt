@@ -1,7 +1,7 @@
 package com.nostalgictouch.deservation.di
 
 import com.google.gson.GsonBuilder
-import com.nostalgictouch.whatshot.data.api.retrofit.ReservationApi
+import com.nostalgictouch.deservation.data.api.retrofit.ReservationApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

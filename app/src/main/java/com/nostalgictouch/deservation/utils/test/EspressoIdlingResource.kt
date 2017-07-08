@@ -1,7 +1,6 @@
-package com.nostalgictouch.whatshot.utils.test
+package com.nostalgictouch.deservation.utils.test
 
 import android.support.test.espresso.IdlingResource
-import com.nostalgictouch.deservation.utils.test.SimpleCountingIdlingResource
 
 object EspressoIdlingResource {
 
