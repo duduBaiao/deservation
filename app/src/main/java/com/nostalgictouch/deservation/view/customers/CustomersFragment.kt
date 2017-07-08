@@ -4,10 +4,10 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v4.view.MenuItemCompat
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.support.v7.widget.SearchView
+import android.view.*
 import com.nostalgictouch.deservation.R
 import com.nostalgictouch.deservation.model.Customer
 import com.nostalgictouch.deservation.view.common.BaseFragment
@@ -22,6 +22,8 @@ class CustomersFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        setHasOptionsMenu(true)
+
         return inflater.inflate(R.layout.fragment_customers, container, false)
     }
 
@@ -30,6 +32,7 @@ class CustomersFragment : BaseFragment() {
 
         setupViewModel()
 
+        customersRecyclerView.setHasFixedSize(true)
         customersRecyclerView.layoutManager = LinearLayoutManager(activity)
 
         if (savedInstanceState == null) {
@@ -51,6 +54,7 @@ class CustomersFragment : BaseFragment() {
 
         viewModel.customers.observe(activity as LifecycleOwner, Observer {
             updateAdapter(it!!)
+            activity.invalidateOptionsMenu()
         })
     }
 
@@ -61,5 +65,31 @@ class CustomersFragment : BaseFragment() {
 
     private fun loadCustomers() {
         viewModel.loadCustomers()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        if (viewModel.loadingStatus.value == Status.LOADED) {
+
+            inflater.inflate(R.menu.menu_customers, menu)
+            super.onCreateOptionsMenu(menu, inflater)
+
+            setupSearchItem(menu)
+        }
+    }
+
+    private fun setupSearchItem(menu: Menu) {
+        val searchItem = menu.findItem(R.id.search)
+        val searchView = MenuItemCompat.getActionView(searchItem) as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                (customersRecyclerView.adapter as CustomersAdapter).filter.filter(newText)
+                return true
+            }
+        })
     }
 }

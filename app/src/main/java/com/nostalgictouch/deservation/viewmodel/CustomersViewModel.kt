@@ -22,5 +22,7 @@ class CustomersViewModel : ViewModel() {
         val customer17 = Customer(17, "Paul", "McCartney")
 
         mCustomersLiveData.value = listOf(customer0, customer15, customer17)
+
+        mCustomersLiveData.loadingStatus.value = Status.LOADED
     }
 }
