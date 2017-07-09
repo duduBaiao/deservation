@@ -11,8 +11,10 @@ import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(val prefs: SharedPreferences, val db: AppDatabase) : IDataSource {
 
-    val LAST_RESERVATION_LOAD = "LAST_RESERVATION_LOAD"
-    val TEN_MINUTES = (1000 * 60 * 10)
+    companion object {
+        val LAST_RESERVATION_LOAD = "LAST_RESERVATION_LOAD"
+        val TEN_MINUTES = (1000 * 60 * 10)
+    }
 
     override fun customers(): Observable<List<Customer>> {
         return db.customerDao().findAll()

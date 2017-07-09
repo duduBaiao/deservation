@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.nostalgictouch.deservation.R
 import com.nostalgictouch.deservation.data.livedata.common.Status
 import com.nostalgictouch.deservation.model.TableReservation
+import com.nostalgictouch.deservation.utils.test.EspressoIdlingResource
 import com.nostalgictouch.deservation.view.common.BaseFragment
 import com.nostalgictouch.deservation.viewmodel.ReservationsViewModel
 import kotlinx.android.synthetic.main.fragment_reservations.*
@@ -59,9 +60,13 @@ class ReservationsFragment : BaseFragment() {
         tablesRecyclerView.adapter = ReservationsAdapter(tableReservations) {
             tableReservation, position ->
 
+            EspressoIdlingResource.increment()
+
             viewModel.swapReservationStatus(tableReservation)
                     .subscribe {
                         tablesRecyclerView.adapter.notifyItemChanged(position)
+
+                        EspressoIdlingResource.decrement()
                     }
         }
     }
