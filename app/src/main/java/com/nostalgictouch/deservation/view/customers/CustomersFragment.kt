@@ -12,7 +12,6 @@ import android.view.*
 import com.nostalgictouch.deservation.R
 import com.nostalgictouch.deservation.data.livedata.common.Status
 import com.nostalgictouch.deservation.model.Customer
-import com.nostalgictouch.deservation.utils.test.EspressoIdlingResource
 import com.nostalgictouch.deservation.view.common.BaseFragment
 import com.nostalgictouch.deservation.view.reservations.ReservationsActivity
 import com.nostalgictouch.deservation.viewmodel.CustomersViewModel
@@ -38,7 +37,7 @@ class CustomersFragment : BaseFragment() {
         customersRecyclerView.layoutManager = LinearLayoutManager(activity)
 
         if (savedInstanceState == null) {
-            loadCustomers()
+            loadData()
         }
     }
 
@@ -60,8 +59,8 @@ class CustomersFragment : BaseFragment() {
         })
     }
 
-    private fun loadCustomers() {
-        EspressoIdlingResource.increment()
+    override fun loadData() {
+        super.loadData()
 
         viewModel.loadCustomers()
     }

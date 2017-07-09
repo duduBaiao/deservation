@@ -17,7 +17,9 @@ abstract class BaseFragment : Fragment() {
         tryAgainButton.setOnClickListener { loadData() }
     }
 
-    abstract fun loadData()
+    open fun loadData() {
+        EspressoIdlingResource.increment()
+    }
 
     fun updateBaseLayouts(status: Status) {
 
