@@ -7,7 +7,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class Repository @Inject constructor(val remoteDataSource: RemoteDataSource) : DataSource {
+class Repository @Inject constructor(val remoteDataSource: RemoteDataSource) : IRepository {
 
     override fun customers(): Observable<List<Customer>> {
 

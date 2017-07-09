@@ -7,6 +7,7 @@ import android.content.Context
 import com.google.gson.GsonBuilder
 import com.nostalgictouch.deservation.data.api.retrofit.ReservationApi
 import com.nostalgictouch.deservation.data.db.AppDatabase
+import com.nostalgictouch.deservation.data.repository.IRepository
 import com.nostalgictouch.deservation.data.repository.RemoteDataSource
 import com.nostalgictouch.deservation.data.repository.Repository
 import dagger.Module
@@ -21,7 +22,7 @@ class AppModule(private val application: Application) {
 
     @Provides
     @Singleton
-    internal fun providesContext(): Context {
+    fun providesContext(): Context {
         return this.application
     }
 
@@ -53,7 +54,7 @@ class AppModule(private val application: Application) {
 
     @Singleton
     @Provides
-    fun providesRepository(remoteDataSource: RemoteDataSource): Repository {
+    fun providesRepository(remoteDataSource: RemoteDataSource): IRepository {
         return Repository(remoteDataSource)
     }
 }

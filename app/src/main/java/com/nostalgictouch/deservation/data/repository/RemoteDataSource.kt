@@ -7,20 +7,20 @@ import com.nostalgictouch.deservation.model.TableReservation
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class RemoteDataSource @Inject constructor(val reservationApi: ReservationApi) : DataSource {
+class RemoteDataSource @Inject constructor(val reservationApi: ReservationApi) : IDataSource {
 
     override fun customers(): Observable<List<Customer>> {
         return reservationApi.customers().flatMap { toCustomerModel(it) }
+    }
+
+    override fun reservations(): Observable<List<TableReservation>> {
+        return reservationApi.reservations().flatMap { toTableReservationModel(it) }
     }
 
     fun toCustomerModel(customers: List<CustomerResponse>): Observable<List<Customer>> {
         return Observable.just(customers.map {
             Customer(it.id, it.customerFirstName, it.customerLastName)
         })
-    }
-
-    override fun reservations(): Observable<List<TableReservation>> {
-        return reservationApi.reservations().flatMap { toTableReservationModel(it) }
     }
 
     private fun toTableReservationModel(tables: List<Boolean>): Observable<List<TableReservation>> {

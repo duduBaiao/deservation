@@ -4,7 +4,7 @@ import com.nostalgictouch.deservation.model.Customer
 import com.nostalgictouch.deservation.model.TableReservation
 import io.reactivex.Observable
 
-interface DataSource {
+interface IDataSource {
 
     fun customers(): Observable<List<Customer>>
 
