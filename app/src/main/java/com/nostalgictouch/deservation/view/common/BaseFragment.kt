@@ -1,5 +1,6 @@
 package com.nostalgictouch.deservation.view.common
 
+import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
 import com.nostalgictouch.deservation.R
@@ -8,7 +9,15 @@ import com.nostalgictouch.deservation.utils.extensions.isNetworkAvailable
 import com.nostalgictouch.deservation.utils.test.EspressoIdlingResource
 import kotlinx.android.synthetic.main.fragment_base.*
 
-open class BaseFragment: Fragment() {
+abstract class BaseFragment : Fragment() {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        tryAgainButton.setOnClickListener { loadData() }
+    }
+
+    abstract fun loadData()
 
     fun updateBaseLayouts(status: Status) {
 
@@ -25,7 +34,7 @@ open class BaseFragment: Fragment() {
 
     private fun showErrorMessage() {
         errorTextView.text = resources.getString(R.string.load_error) +
-                if (activity.isNetworkAvailable()) "" else "\n" + resources.getString(R.string.check_internet)
+                if (activity.isNetworkAvailable()) "" else ".\n" + resources.getString(R.string.check_internet)
 
         errorLayout.visibility = View.VISIBLE
     }
