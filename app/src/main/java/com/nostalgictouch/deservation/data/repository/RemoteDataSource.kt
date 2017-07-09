@@ -10,11 +10,15 @@ import javax.inject.Inject
 class RemoteDataSource @Inject constructor(val reservationApi: ReservationApi) : IDataSource {
 
     override fun customers(): Observable<List<Customer>> {
-        return reservationApi.customers().flatMap { toCustomerModel(it) }
+        return reservationApi.customers().flatMap {
+            toCustomerModel(it)
+        }
     }
 
     override fun reservations(): Observable<List<TableReservation>> {
-        return reservationApi.reservations().flatMap { toTableReservationModel(it) }
+        return reservationApi.reservations().flatMap {
+            toTableReservationModel(it)
+        }
     }
 
     fun toCustomerModel(customers: List<CustomerResponse>): Observable<List<Customer>> {

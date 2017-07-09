@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder
 import com.nostalgictouch.deservation.data.api.retrofit.ReservationApi
 import com.nostalgictouch.deservation.data.db.AppDatabase
 import com.nostalgictouch.deservation.data.repository.IRepository
+import com.nostalgictouch.deservation.data.repository.LocalDataSource
 import com.nostalgictouch.deservation.data.repository.RemoteDataSource
 import com.nostalgictouch.deservation.data.repository.Repository
 import dagger.Module
@@ -28,7 +29,7 @@ class AppModule(private val application: Application) {
 
     @Singleton
     @Provides
-    fun providesDatabase(context: Context): RoomDatabase {
+    fun providesDatabase(context: Context): AppDatabase {
         return Room.databaseBuilder(context, AppDatabase::class.java, "deservation-db").build()
     }
 
@@ -48,13 +49,19 @@ class AppModule(private val application: Application) {
 
     @Singleton
     @Provides
+    fun providesLocalDataSource(db: AppDatabase): LocalDataSource {
+        return LocalDataSource(db)
+    }
+
+    @Singleton
+    @Provides
     fun providesRemoteDataSource(reservationApi: ReservationApi): RemoteDataSource {
         return RemoteDataSource(reservationApi)
     }
 
     @Singleton
     @Provides
-    fun providesRepository(remoteDataSource: RemoteDataSource): IRepository {
-        return Repository(remoteDataSource)
+    fun providesRepository(localDataSource: LocalDataSource, remoteDataSource: RemoteDataSource): IRepository {
+        return Repository(localDataSource, remoteDataSource)
     }
 }

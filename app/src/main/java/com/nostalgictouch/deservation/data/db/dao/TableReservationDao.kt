@@ -5,16 +5,17 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import com.nostalgictouch.deservation.model.TableReservation
+import io.reactivex.Flowable
 
 @Dao
 interface TableReservationDao {
 
     @Query("SELECT * FROM TableReservation")
-    abstract fun findAll(): List<TableReservation>
+    fun findAll(): Flowable<List<TableReservation>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insert(tableReservation: TableReservation)
+    fun insertAll(tableReservations: List<TableReservation>)
 
     @Query("DELETE FROM TableReservation")
-    abstract fun deleteAll()
+    fun deleteAll()
 }

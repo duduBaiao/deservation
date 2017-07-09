@@ -5,13 +5,15 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import com.nostalgictouch.deservation.model.Customer
+import io.reactivex.Flowable
 
 @Dao
 interface CustomerDao {
 
     @Query("SELECT * FROM Customer")
-    abstract fun findAll(): List<Customer>
+    fun findAll(): Flowable<List<Customer>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insert(customer: Customer)
+    fun insertAll(customers: List<Customer>)
+
 }
