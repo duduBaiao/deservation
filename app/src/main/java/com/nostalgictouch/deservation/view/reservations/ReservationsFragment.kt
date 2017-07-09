@@ -57,10 +57,12 @@ class ReservationsFragment : BaseFragment() {
 
     fun updateAdapter(tableReservations: List<TableReservation>) {
         tablesRecyclerView.adapter = ReservationsAdapter(tableReservations) {
-            table, position ->
+            tableReservation, position ->
 
-            table.available = !table.available
-            tablesRecyclerView.adapter.notifyItemChanged(position)
+            viewModel.swapReservationStatus(tableReservation)
+                    .subscribe {
+                        tablesRecyclerView.adapter.notifyItemChanged(position)
+                    }
         }
     }
 

@@ -2,8 +2,8 @@ package com.nostalgictouch.deservation.data.repository
 
 import com.nostalgictouch.deservation.model.Customer
 import com.nostalgictouch.deservation.model.TableReservation
+import io.reactivex.Completable
 import io.reactivex.Observable
-import io.reactivex.ObservableSource
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -28,6 +28,13 @@ class Repository @Inject constructor(
                 .onErrorResumeNext(
                         remoteDataSource.reservations()
                                 .doOnNext { localDataSource.saveReservations(it) })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    override fun swapReservationStatus(tableReservation: TableReservation): Completable {
+
+        return localDataSource.swapReservationStatus(tableReservation)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }

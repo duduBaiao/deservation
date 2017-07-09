@@ -1,9 +1,6 @@
 package com.nostalgictouch.deservation.data.db.dao
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.OnConflictStrategy
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 import com.nostalgictouch.deservation.model.TableReservation
 import io.reactivex.Flowable
 
@@ -15,6 +12,9 @@ interface TableReservationDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(tableReservations: List<TableReservation>)
+
+    @Update
+    fun update(tableReservation: TableReservation)
 
     @Query("DELETE FROM TableReservation")
     fun deleteAll()

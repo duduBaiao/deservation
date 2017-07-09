@@ -5,6 +5,7 @@ import com.nostalgictouch.deservation.data.livedata.common.BaseLiveData
 import com.nostalgictouch.deservation.data.livedata.common.Status
 import com.nostalgictouch.deservation.data.repository.IRepository
 import com.nostalgictouch.deservation.model.TableReservation
+import io.reactivex.Completable
 import javax.inject.Inject
 
 class TablesLiveData : BaseLiveData<List<TableReservation>>() {
@@ -28,5 +29,9 @@ class TablesLiveData : BaseLiveData<List<TableReservation>>() {
                         {
                             loadingStatus.value = Status.ERROR
                         })
+    }
+
+    fun swapReservationStatus(tableReservation: TableReservation): Completable {
+        return mRepository.swapReservationStatus(tableReservation)
     }
 }

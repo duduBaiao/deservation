@@ -2,8 +2,8 @@ package com.nostalgictouch.deservation.di
 
 import android.app.Application
 import android.arch.persistence.room.Room
-import android.arch.persistence.room.RoomDatabase
 import android.content.Context
+import android.content.SharedPreferences
 import com.google.gson.GsonBuilder
 import com.nostalgictouch.deservation.data.api.retrofit.ReservationApi
 import com.nostalgictouch.deservation.data.db.AppDatabase
@@ -25,6 +25,12 @@ class AppModule(private val application: Application) {
     @Singleton
     fun providesContext(): Context {
         return this.application
+    }
+
+    @Provides
+    @Singleton
+    fun providesSharedPreferences(context: Context): SharedPreferences {
+        return context.getSharedPreferences("deservation-prefs", Context.MODE_PRIVATE)
     }
 
     @Singleton
@@ -49,8 +55,8 @@ class AppModule(private val application: Application) {
 
     @Singleton
     @Provides
-    fun providesLocalDataSource(db: AppDatabase): LocalDataSource {
-        return LocalDataSource(db)
+    fun providesLocalDataSource(prefs: SharedPreferences, db: AppDatabase): LocalDataSource {
+        return LocalDataSource(prefs, db)
     }
 
     @Singleton
