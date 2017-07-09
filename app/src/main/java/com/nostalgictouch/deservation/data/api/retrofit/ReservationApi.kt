@@ -1,14 +1,14 @@
 package com.nostalgictouch.deservation.data.api.retrofit
 
-import com.nostalgictouch.deservation.data.api.retrofit.response.Customer
-import retrofit2.Call
+import com.nostalgictouch.deservation.data.api.retrofit.response.CustomerResponse
+import io.reactivex.Observable
 import retrofit2.http.GET
 
 interface ReservationApi {
 
     @GET("customer-list.json")
-    fun customers(): Call<List<Customer>>
+    fun customers(): Observable<List<CustomerResponse>>
 
     @GET("table-map.json")
-    fun reservations(): Call<List<Boolean>>
+    fun reservations(): Observable<List<Boolean>>
 }
