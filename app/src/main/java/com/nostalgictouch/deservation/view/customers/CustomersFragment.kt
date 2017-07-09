@@ -100,8 +100,6 @@ class CustomersFragment : BaseFragment() {
     private fun showReservations(customer: Customer) {
         val intent = Intent(activity, ReservationsActivity::class.java)
 
-        intent.putExtra("customer", customer)
-
         startActivity(intent)
     }
 }

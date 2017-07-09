@@ -1,7 +1,12 @@
 package com.nostalgictouch.deservation.di
 
+import android.app.Application
+import android.arch.persistence.room.Room
+import android.arch.persistence.room.RoomDatabase
+import android.content.Context
 import com.google.gson.GsonBuilder
 import com.nostalgictouch.deservation.data.api.retrofit.ReservationApi
+import com.nostalgictouch.deservation.data.db.AppDatabase
 import com.nostalgictouch.deservation.data.repository.RemoteDataSource
 import com.nostalgictouch.deservation.data.repository.Repository
 import dagger.Module
@@ -12,7 +17,19 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class ApiModule {
+class AppModule(private val application: Application) {
+
+    @Provides
+    @Singleton
+    internal fun providesContext(): Context {
+        return this.application
+    }
+
+    @Singleton
+    @Provides
+    fun providesDatabase(context: Context): RoomDatabase {
+        return Room.databaseBuilder(context, AppDatabase::class.java, "deservation-db").build()
+    }
 
     @Singleton
     @Provides

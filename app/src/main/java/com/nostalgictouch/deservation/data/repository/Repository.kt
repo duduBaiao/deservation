@@ -1,7 +1,7 @@
 package com.nostalgictouch.deservation.data.repository
 
 import com.nostalgictouch.deservation.model.Customer
-import com.nostalgictouch.deservation.model.Table
+import com.nostalgictouch.deservation.model.TableReservation
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -16,7 +16,7 @@ class Repository @Inject constructor(val remoteDataSource: RemoteDataSource) : D
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun reservations(): Observable<List<Table>> {
+    override fun reservations(): Observable<List<TableReservation>> {
 
         return remoteDataSource.reservations()
                 .subscribeOn(Schedulers.io())

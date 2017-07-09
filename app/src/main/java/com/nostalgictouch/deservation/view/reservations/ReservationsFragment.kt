@@ -10,8 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.nostalgictouch.deservation.R
 import com.nostalgictouch.deservation.data.livedata.common.Status
-import com.nostalgictouch.deservation.model.Customer
-import com.nostalgictouch.deservation.model.Table
+import com.nostalgictouch.deservation.model.TableReservation
 import com.nostalgictouch.deservation.view.common.BaseFragment
 import com.nostalgictouch.deservation.viewmodel.ReservationsViewModel
 import kotlinx.android.synthetic.main.fragment_reservations.*
@@ -20,8 +19,6 @@ class ReservationsFragment : BaseFragment() {
 
     private lateinit var viewModel: ReservationsViewModel
 
-    lateinit private var mCustomer: Customer
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_reservations, container, false)
@@ -29,8 +26,6 @@ class ReservationsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        mCustomer = activity.intent.extras.getParcelable("customer")
 
         setupViewModel()
 
@@ -60,8 +55,8 @@ class ReservationsFragment : BaseFragment() {
         })
     }
 
-    fun updateAdapter(tables: List<Table>) {
-        tablesRecyclerView.adapter = ReservationsAdapter(tables) {
+    fun updateAdapter(tableReservations: List<TableReservation>) {
+        tablesRecyclerView.adapter = ReservationsAdapter(tableReservations) {
             table, position ->
 
             table.available = !table.available

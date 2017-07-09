@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nostalgictouch.deservation.R
-import com.nostalgictouch.deservation.model.Table
+import com.nostalgictouch.deservation.model.TableReservation
 import kotlinx.android.synthetic.main.item_table.view.*
 
-class ReservationsAdapter(val tables: List<Table>,
-                          val itemClick: (Table, Int) -> Unit) :
+class ReservationsAdapter(val tableReservations: List<TableReservation>,
+                          val itemClick: (TableReservation, Int) -> Unit) :
         RecyclerView.Adapter<ReservationsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -19,10 +19,10 @@ class ReservationsAdapter(val tables: List<Table>,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindView(tables[position], position, itemClick)
+        holder.bindView(tableReservations[position], position, itemClick)
     }
 
-    override fun getItemCount() = tables.size
+    override fun getItemCount() = tableReservations.size
 
     open class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -48,11 +48,11 @@ class ReservationsAdapter(val tables: List<Table>,
             reservedTextColor = ContextCompat.getColor(itemView.context, R.color.reserved_table_status)
         }
 
-        fun bindView(table: Table, position: Int, itemClick: (Table, Int) -> Unit) {
+        fun bindView(tableReservation: TableReservation, position: Int, itemClick: (TableReservation, Int) -> Unit) {
 
-            itemView.title.text = tableText + " " + table.id
+            itemView.title.text = tableText + " " + tableReservation.id
 
-            if (table.available) {
+            if (tableReservation.available) {
                 itemView.setBackgroundColor(availableBackgroundColor)
 
                 itemView.status.setTextColor(availableTextColor)
@@ -65,7 +65,7 @@ class ReservationsAdapter(val tables: List<Table>,
                 itemView.status.setText(reservedText)
             }
 
-            itemView.clickableLayout.setOnClickListener { itemClick(table, position) }
+            itemView.clickableLayout.setOnClickListener { itemClick(tableReservation, position) }
         }
     }
 }

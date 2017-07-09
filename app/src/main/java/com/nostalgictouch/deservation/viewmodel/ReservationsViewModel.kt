@@ -4,7 +4,6 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
 import com.nostalgictouch.deservation.data.livedata.TablesLiveData
 import com.nostalgictouch.deservation.data.livedata.common.Status
-import com.nostalgictouch.deservation.model.Table
 
 class ReservationsViewModel : ViewModel() {
 

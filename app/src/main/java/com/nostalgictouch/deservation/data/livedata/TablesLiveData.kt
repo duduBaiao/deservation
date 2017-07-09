@@ -4,10 +4,10 @@ import com.nostalgictouch.deservation.DeservationApp
 import com.nostalgictouch.deservation.data.livedata.common.BaseLiveData
 import com.nostalgictouch.deservation.data.livedata.common.Status
 import com.nostalgictouch.deservation.data.repository.Repository
-import com.nostalgictouch.deservation.model.Table
+import com.nostalgictouch.deservation.model.TableReservation
 import javax.inject.Inject
 
-class TablesLiveData : BaseLiveData<List<Table>>() {
+class TablesLiveData : BaseLiveData<List<TableReservation>>() {
 
     @Inject
     lateinit var mRepository: Repository
