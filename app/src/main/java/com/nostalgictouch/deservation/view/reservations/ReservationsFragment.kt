@@ -87,7 +87,9 @@ class ReservationsFragment : BaseFragment() {
                 .subscribe {
                     tablesRecyclerView.adapter.notifyItemChanged(position)
 
-                    EspressoIdlingResource.decrement()
+                    if (!EspressoIdlingResource.idlingResource.isIdleNow) {
+                        EspressoIdlingResource.decrement()
+                    }
                 }
     }
 
