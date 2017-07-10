@@ -44,13 +44,13 @@ dependencies {
     compile "io.reactivex.rxjava2:rxjava:$rootProject.rxJavaVersion"
     compile "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
 
-    compile "android.arch.lifecycle:runtime:$rootProject.archLifecycleVersion"
-    compile "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
-    compile "android.arch.persistence.room:runtime:$rootProject.archLifecycleVersion"
-    compile "android.arch.persistence.room:rxjava2:$rootProject.archLifecycleVersion"
+    compile "android.arch.lifecycle:runtime:$rootProject.architectureComponentsVersion"
+    compile "android.arch.lifecycle:extensions:$rootProject.architectureComponentsVersion"
+    compile "android.arch.persistence.room:runtime:$rootProject.architectureComponentsVersion"
+    compile "android.arch.persistence.room:rxjava2:$rootProject.architectureComponentsVersion"
 
-    kapt "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
-    kapt "android.arch.persistence.room:compiler:$rootProject.archLifecycleVersion"
+    kapt "android.arch.lifecycle:compiler:$rootProject.architectureComponentsVersion"
+    kapt "android.arch.persistence.room:compiler:$rootProject.architectureComponentsVersion"
 
     compile "com.google.dagger:dagger:$rootProject.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
@@ -73,12 +73,13 @@ dependencies {
     androidTestCompile "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"
     androidTestCompile "com.android.support.test.espresso:espresso-contrib:$rootProject.espressoVersion"
     compile "com.android.support.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
+    androidTestCompile "android.arch.core:core-testing:$rootProject.architectureComponentsVersion"
 
     androidTestCompile "com.android.support.test:runner:$rootProject.runnerVersion"
     androidTestCompile "com.android.support.test:rules:$rootProject.runnerVersion"
 
     testCompile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    testCompile "android.arch.core:core-testing:$rootProject.archLifecycleVersion"
+    testCompile "android.arch.core:core-testing:$rootProject.architectureComponentsVersion"
     testCompile "junit:junit:$rootProject.ext.junitVersion"
     testCompile "com.nhaarman:mockito-kotlin:$rootProject.ext.mockitoVersion"
 }
