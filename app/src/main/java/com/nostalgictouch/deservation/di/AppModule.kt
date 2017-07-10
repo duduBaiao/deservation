@@ -7,6 +7,7 @@ import android.content.SharedPreferences
 import com.google.gson.GsonBuilder
 import com.nostalgictouch.deservation.data.api.retrofit.ReservationApi
 import com.nostalgictouch.deservation.data.db.AppDatabase
+import com.nostalgictouch.deservation.data.prefs.IPrefs
 import com.nostalgictouch.deservation.data.prefs.Prefs
 import com.nostalgictouch.deservation.data.repository.IRepository
 import com.nostalgictouch.deservation.data.repository.LocalDataSource
@@ -36,7 +37,7 @@ class AppModule(private val application: Application) {
 
     @Provides
     @Singleton
-    fun providesPrefs(sharedPreferences: SharedPreferences): Prefs {
+    fun providesPrefs(sharedPreferences: SharedPreferences): IPrefs {
         return Prefs(sharedPreferences)
     }
 

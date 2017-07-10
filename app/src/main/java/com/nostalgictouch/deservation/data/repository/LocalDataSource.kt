@@ -1,14 +1,14 @@
 package com.nostalgictouch.deservation.data.repository
 
 import com.nostalgictouch.deservation.data.db.AppDatabase
-import com.nostalgictouch.deservation.data.prefs.Prefs
+import com.nostalgictouch.deservation.data.prefs.IPrefs
 import com.nostalgictouch.deservation.model.Customer
 import com.nostalgictouch.deservation.model.TableReservation
 import io.reactivex.Completable
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class LocalDataSource @Inject constructor(val prefs: Prefs, val db: AppDatabase) : IDataSource {
+open class LocalDataSource @Inject constructor(val prefs: IPrefs, val db: AppDatabase) : IDataSource {
 
     override fun customers(): Observable<List<Customer>> {
         return db.customerDao().findAll()
@@ -19,7 +19,7 @@ class LocalDataSource @Inject constructor(val prefs: Prefs, val db: AppDatabase)
     }
 
     override fun reservations(): Observable<List<TableReservation>> {
-        if (prefs.reservationsExpired()) {
+        if (prefs.isReservationsExpired()) {
             return Observable.error(Exception())
         }
 
