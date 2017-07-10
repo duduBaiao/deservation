@@ -13,7 +13,7 @@ class CustomersLiveData : BaseLiveData<List<Customer>>() {
     lateinit var mRepository: IRepository
 
     init {
-        DeservationApp.appComponent.inject(this)
+        DeservationApp.appComponent?.inject(this)
     }
 
     fun loadCustomers() {

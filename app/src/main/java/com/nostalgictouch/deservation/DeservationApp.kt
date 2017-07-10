@@ -8,9 +8,9 @@ import com.nostalgictouch.deservation.di.DaggerAppComponent
 class DeservationApp : Application() {
 
     companion object {
-        lateinit private var mAppComponent: AppComponent
+        private var mAppComponent: AppComponent? = null
 
-        val appComponent: AppComponent
+        val appComponent: AppComponent?
             get() = mAppComponent
     }
 

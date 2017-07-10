@@ -14,7 +14,7 @@ class TablesLiveData : BaseLiveData<List<TableReservation>>() {
     lateinit var mRepository: IRepository
 
     init {
-        DeservationApp.appComponent.inject(this)
+        DeservationApp.appComponent?.inject(this)
     }
 
     fun loadReservations() {
