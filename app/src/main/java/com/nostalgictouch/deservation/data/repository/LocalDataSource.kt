@@ -40,7 +40,7 @@ class LocalDataSource @Inject constructor(val prefs: Prefs, val db: AppDatabase)
         prefs.saveReservationsLoadTime()
     }
 
-    fun swapReservationStatus(tableReservation: TableReservation): Completable {
+    fun toggleReservationStatus(tableReservation: TableReservation): Completable {
 
         return Completable.fromAction {
             tableReservation.available = !tableReservation.available

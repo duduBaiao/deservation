@@ -31,7 +31,7 @@ class TablesLiveData : BaseLiveData<List<TableReservation>>() {
                         })
     }
 
-    fun swapReservationStatus(tableReservation: TableReservation): Completable {
-        return mRepository.swapReservationStatus(tableReservation)
+    fun toggleReservationStatus(tableReservation: TableReservation): Completable {
+        return mRepository.toggleReservationStatus(tableReservation)
     }
 }

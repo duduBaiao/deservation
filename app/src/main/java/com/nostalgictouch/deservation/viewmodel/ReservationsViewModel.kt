@@ -21,7 +21,7 @@ class ReservationsViewModel : ViewModel() {
         mTablesLiveData.loadReservations()
     }
 
-    fun swapReservationStatus(tableReservation: TableReservation): Completable {
-        return mTablesLiveData.swapReservationStatus(tableReservation)
+    fun toggleReservationStatus(tableReservation: TableReservation): Completable {
+        return mTablesLiveData.toggleReservationStatus(tableReservation)
     }
 }

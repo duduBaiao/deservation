@@ -15,6 +15,9 @@ import com.nostalgictouch.deservation.utils.test.EspressoIdlingResource
 import com.nostalgictouch.deservation.view.common.BaseFragment
 import com.nostalgictouch.deservation.viewmodel.ReservationsViewModel
 import kotlinx.android.synthetic.main.fragment_reservations.*
+import org.jetbrains.anko.noButton
+import org.jetbrains.anko.support.v4.alert
+import org.jetbrains.anko.yesButton
 
 class ReservationsFragment : BaseFragment() {
 
@@ -60,15 +63,32 @@ class ReservationsFragment : BaseFragment() {
         tablesRecyclerView.adapter = ReservationsAdapter(tableReservations) {
             tableReservation, position ->
 
-            EspressoIdlingResource.increment()
-
-            viewModel.swapReservationStatus(tableReservation)
-                    .subscribe {
-                        tablesRecyclerView.adapter.notifyItemChanged(position)
-
-                        EspressoIdlingResource.decrement()
-                    }
+            confirmStatusChange(tableReservation, position)
         }
+    }
+
+    private fun confirmStatusChange(tableReservation: TableReservation, position: Int) {
+        val messageId =
+                if (tableReservation.available) R.string.confirm_reservation
+                else R.string.confirm_reservation_cancelation
+
+        alert(messageId) {
+            yesButton {
+                toggleReservationStatus(tableReservation, position)
+            }
+            noButton {}
+        }.show()
+    }
+
+    private fun toggleReservationStatus(tableReservation: TableReservation, position: Int) {
+        EspressoIdlingResource.increment()
+
+        viewModel.toggleReservationStatus(tableReservation)
+                .subscribe {
+                    tablesRecyclerView.adapter.notifyItemChanged(position)
+
+                    EspressoIdlingResource.decrement()
+                }
     }
 
     override fun loadData() {

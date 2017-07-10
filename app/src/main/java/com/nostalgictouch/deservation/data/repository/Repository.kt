@@ -32,9 +32,9 @@ class Repository @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun swapReservationStatus(tableReservation: TableReservation): Completable {
+    override fun toggleReservationStatus(tableReservation: TableReservation): Completable {
 
-        return localDataSource.swapReservationStatus(tableReservation)
+        return localDataSource.toggleReservationStatus(tableReservation)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }

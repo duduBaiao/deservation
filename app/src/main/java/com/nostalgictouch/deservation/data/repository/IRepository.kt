@@ -5,5 +5,5 @@ import io.reactivex.Completable
 
 interface IRepository : IDataSource {
     
-    fun swapReservationStatus(tableReservation: TableReservation): Completable
+    fun toggleReservationStatus(tableReservation: TableReservation): Completable
 }

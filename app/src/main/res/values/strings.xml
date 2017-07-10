@@ -9,4 +9,6 @@
     <string name="table">Table</string>
     <string name="available">Available</string>
     <string name="reserved">Reserved</string>
+    <string name="confirm_reservation_cancelation">Are you sure you want to cancel this reservation?</string>
+    <string name="confirm_reservation">Do you confirm this reservation?</string>
 </resources>
