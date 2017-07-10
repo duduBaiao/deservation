@@ -38,12 +38,15 @@ class ReservationsActivityTest : BaseActivityTest() {
     }
 
     @Test
-    fun clickOnCustomerShouldOpenReservationsActivity() {
+    fun clickOnReservationShouldToggleStatus() {
 
         checkRecyclerViewItemText(R.id.tablesRecyclerView, 0, "Reserved")
 
         clickOnRecyclerViewItem(R.id.tablesRecyclerView, 0)
 
+        clickOnDialogButtonWithText(activityTestRule.activity.getString(android.R.string.yes))
+
         checkRecyclerViewItemText(R.id.tablesRecyclerView, 0, "Available")
     }
+
 }

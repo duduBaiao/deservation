@@ -7,6 +7,7 @@ import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.typeText
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
+import android.support.test.espresso.matcher.RootMatchers.isDialog
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.v7.widget.RecyclerView
 import android.widget.AutoCompleteTextView
@@ -36,6 +37,12 @@ open class BaseActivityTest {
                 .check(matches(atPosition(position, hasDescendant(withText(text)))))
     }
 
+    fun clickOnDialogButtonWithText(text: String) {
+        onView(withText(text))
+                .inRoot(isDialog())
+                .check(matches(isDisplayed()))
+                .perform(click());
+    }
     @After
     fun unregisterIdlingResource() {
         if (mIdlingResource != null) {
