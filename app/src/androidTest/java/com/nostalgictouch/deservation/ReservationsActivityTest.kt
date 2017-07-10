@@ -14,21 +14,17 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-@LargeTest
 @RunWith(AndroidJUnit4::class)
 class ReservationsActivityTest : BaseActivityTest() {
 
     @Rule @JvmField
     var activityTestRule = IntentsTestRule(ReservationsActivity::class.java)
 
-    lateinit private var prefs: Prefs
-
     @Before
     fun setup() {
         registerIdlingResource(activityTestRule.activity.idlingResource)
 
-        prefs = Prefs(activityTestRule.activity.getSharedPreferences(Prefs.NAME, Context.MODE_PRIVATE))
-
+        val prefs = Prefs(activityTestRule.activity.getSharedPreferences(Prefs.NAME, Context.MODE_PRIVATE))
         prefs.saveReservationsLoadTime(0)
     }
 
