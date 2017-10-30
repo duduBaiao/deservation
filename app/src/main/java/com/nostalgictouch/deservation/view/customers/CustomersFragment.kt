@@ -44,7 +44,7 @@ class CustomersFragment : BaseFragment() {
     private fun setupViewModel() {
         viewModel = ViewModelProviders.of(this.activity).get(CustomersViewModel::class.java)
 
-        viewModel.loadingStatus.observe(this.activity as LifecycleOwner, Observer {
+        viewModel.loadingStatus.observe(this.activity, Observer {
             status ->
 
             if (status == Status.LOADED) customersRecyclerView.visibility = View.VISIBLE
@@ -53,7 +53,7 @@ class CustomersFragment : BaseFragment() {
             updateBaseLayouts(status!!)
         })
 
-        viewModel.customers.observe(activity as LifecycleOwner, Observer {
+        viewModel.customers.observe(activity, Observer {
             updateAdapter(it!!)
             activity.invalidateOptionsMenu()
         })
@@ -67,7 +67,7 @@ class CustomersFragment : BaseFragment() {
 
     fun updateAdapter(customers: List<Customer>) {
         customersRecyclerView.adapter = CustomersAdapter(customers) {
-            showReservations(it)
+            showReservations()
         }
     }
 
@@ -97,7 +97,7 @@ class CustomersFragment : BaseFragment() {
         })
     }
 
-    private fun showReservations(customer: Customer) {
+    private fun showReservations() {
         val intent = Intent(activity, ReservationsActivity::class.java)
 
         startActivity(intent)

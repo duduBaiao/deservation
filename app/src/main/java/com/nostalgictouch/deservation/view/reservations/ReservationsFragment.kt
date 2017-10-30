@@ -45,7 +45,7 @@ class ReservationsFragment : BaseFragment() {
     private fun setupViewModel() {
         viewModel = ViewModelProviders.of(this.activity).get(ReservationsViewModel::class.java)
 
-        viewModel.loadingStatus.observe(this.activity as LifecycleOwner, Observer {
+        viewModel.loadingStatus.observe(this.activity, Observer {
             status ->
 
             if (status == Status.LOADED) tablesRecyclerView.visibility = View.VISIBLE
@@ -54,7 +54,7 @@ class ReservationsFragment : BaseFragment() {
             updateBaseLayouts(status!!)
         })
 
-        viewModel.reservations.observe(activity as LifecycleOwner, Observer {
+        viewModel.reservations.observe(activity, Observer {
             updateAdapter(it!!)
         })
     }
